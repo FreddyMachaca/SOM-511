@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Calculadora Simples</string>
+    <string name="somar">SOMAR</string>
+    <string name="subtrair">SUBTRAIR</string>
+    <string name="multiplicar">MULTIPLICAR</string>
+    <string name="dividir">DIVIDIR</string>
+    <string name="valor1">Digite o valor 1</string>
+    <string name="valor2">Digite o valor 2</string>
+
+
+    <string name="canal">CFB Cursos - Canal DEVHOME</string>
+    <string name="curso">Curso Android Studio</string>
+</resources>
