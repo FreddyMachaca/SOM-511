@@ -1,9 +1,6 @@
 <?php
 $conexion = mysqli_connect("localhost", "root", "", "android_db");
 
-$username = $_POST["usuario"];
-$password = $_POST["contrasena"];
-
 if (!$conexion) {
     echo "Error en la conexión a la base de datos: " . mysqli_connect_error();
     exit;
@@ -11,17 +8,27 @@ if (!$conexion) {
 
 echo "Conexión a la base de datos establecida correctamente.";
 
-$sql = "SELECT * FROM usuarios WHERE usuario='$username' AND contrasena='$password'";
-$result = mysqli_query($conexion, $sql);
+$username = $_POST["username"];
+$password = $_POST["password"];
+
+$sql = "SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?";
+$stmt = mysqli_prepare($conexion, $sql);
+mysqli_stmt_bind_param($stmt, "ss", $username, $password);
+mysqli_stmt_execute($stmt);
+
+$result = mysqli_stmt_get_result($stmt);
 
 if (!$result) {
     echo "Error en la consulta: " . mysqli_error($conexion);
     exit;
 }
 
-if ($result->num_rows > 0) {
-    echo "Ingresaste correctamente";
+if (mysqli_num_rows($result) > 0) {
+    echo "Login exitoso";
 } else {
     echo "Usuario o contraseña incorrectos";
 }
+
+mysqli_stmt_close($stmt);
+mysqli_close($conexion);
 ?>
