@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void iniciarSesion() {
-        String url = "http://192.168.0.14/backendPHP/login.php"; // Cambia la URL a la ubicación de tu archivo PHP de inicio de sesión
+        String url = "http://localhost/backendPHP/login.php"; // Cambia la URL a la ubicación de tu archivo PHP
 
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
