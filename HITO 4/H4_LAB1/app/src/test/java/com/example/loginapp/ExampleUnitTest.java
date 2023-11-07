@@ -1,4 +1,4 @@
-package com.example.h4_lab1;
+package com.example.loginapp;
 
 import org.junit.Test;
 

@@ -13,6 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "H4_LAB1"
+rootProject.name = "LoginApp"
 include(":app")
- 

@@ -1,34 +1,37 @@
 <?php
-$conexion = mysqli_connect("localhost", "root", "", "android_db");
+// Conexión a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "login";
 
-if (!$conexion) {
-    echo "Error en la conexión a la base de datos: " . mysqli_connect_error();
-    exit;
+// Creación de la conexión
+$conn = mysqli_connect($servername, $username, $password, $database);
+
+// Comprobación de la conexión
+if (!$conn) {
+    die("Conexión fallida: " . mysqli_connect_error());
 }
 
-echo "Conexión a la base de datos establecida correctamente.";
+// Consulta a la base de datos
+$usuario = $_POST['usuario'];
+$contrasena = $_POST['contrasena'];
 
-$username = $_POST["username"];
-$password = $_POST["password"];
+$sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND contrasena = '$contrasena'";
+$result = mysqli_query($conn, $sql);
 
-$sql = "SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?";
-$stmt = mysqli_prepare($conexion, $sql);
-mysqli_stmt_bind_param($stmt, "ss", $username, $password);
-mysqli_stmt_execute($stmt);
-
-$result = mysqli_stmt_get_result($stmt);
-
-if (!$result) {
-    echo "Error en la consulta: " . mysqli_error($conexion);
-    exit;
-}
-
+// Comprobación del resultado
 if (mysqli_num_rows($result) > 0) {
-    echo "Login exitoso";
+  // Usuario y contraseña correctos
+  $row = mysqli_fetch_assoc($result);
+  session_start();
+  $_SESSION['usuario'] = $row['nombre'];
+  echo "1"; // Sesión iniciada correctamente
 } else {
-    echo "Usuario o contraseña incorrectos";
+  // Usuario y contraseña incorrectos
+  echo "0"; // Usuario o contraseña incorrectos
 }
 
-mysqli_stmt_close($stmt);
-mysqli_close($conexion);
+// Cierre de la conexión
+mysqli_close($conn);
 ?>

@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.h4_lab1"
+    namespace = "com.example.loginapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.h4_lab1"
+        applicationId = "com.example.loginapp"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

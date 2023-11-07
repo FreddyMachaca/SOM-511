@@ -1,4 +1,4 @@
-package com.example.h4_lab1;
+package com.example.loginapp;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.h4_lab1", appContext.getPackageName());
+        assertEquals("com.example.loginapp", appContext.getPackageName());
     }
 }
