@@ -24,12 +24,11 @@ $result = mysqli_query($conn, $sql);
 if (mysqli_num_rows($result) > 0) {
   // Usuario y contraseña correctos
   $row = mysqli_fetch_assoc($result);
-  session_start();
-  $_SESSION['usuario'] = $row['nombre'];
-  echo "1"; // Sesión iniciada correctamente
+  $mensajeBienvenida = "Bienvenido " . $row['nombre'];
+  echo $mensajeBienvenida; // Muestra el mensaje de bienvenida
 } else {
   // Usuario y contraseña incorrectos
-  echo "0"; // Usuario o contraseña incorrectos
+  echo "Usuario o contraseña incorrectos";
 }
 
 // Cierre de la conexión

@@ -46,17 +46,17 @@ public class MainActivity extends AppCompatActivity {
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (response.equals("1")) {
+                if (response.startsWith("Bienvenido")) {
                     // Sesión iniciada correctamente
-                    // Abre la nueva actividad "HomeActivity"
+                    // Abre la nueva actividad "HomeActivity" y pasa el mensaje de bienvenida
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    intent.putExtra("mensajeBienvenida", response);
                     startActivity(intent);
                     finish(); // Cierra la actividad actual para que el usuario no pueda regresar
                 } else {
                     // Error al iniciar sesión
                     Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
